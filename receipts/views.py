@@ -52,10 +52,10 @@ def account_list(request):
 @login_required
 def create_category(request):
     if request.method == "POST":
-        form = ReceiptForm(request.POST)
+        form = CategoryForm(request.POST)
         if form.is_valid():
             category = form.save(False)
-            category.purchaser = request.user
+            category.owner = request.user
             form.save()
             return redirect("category_list")
     else:
