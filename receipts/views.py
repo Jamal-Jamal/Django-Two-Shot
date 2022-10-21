@@ -81,3 +81,4 @@ def create_account(request):
         "form": form,
     }
     return render(request, "accounts/create.html", context)
+

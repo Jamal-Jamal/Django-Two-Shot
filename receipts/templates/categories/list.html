@@ -7,7 +7,26 @@
     <title>Document</title>
 </head>
 <body>
+    <header>
+        <nav>
+            <ul>
+                {% if user.is_authenticated %}
+                <li> Hello, {{ user.username }}</li>
+                <li><a href="{% url 'logout' %}">Logout</a></li>
+                <li><a href="{% url 'create_receipt' %}">Create Receipt</a></li>
+                <li><a href="{% url 'create_account' %}">Create Account</a></li>
+                <li><a href="{% url 'account_list' %}">My Account</a></li>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                {% else %}
+                <li><a href="{% url 'signup' %}">Sigh up</a></li>
+                <li><a href="{% url 'login' %}">Login</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
     <main>
+        {% if user.is_authenticated %}
+        <h1>My Categories</h1>
         <table>
             <thead>
                 <tr>
@@ -24,6 +43,7 @@
                 {% endfor %}
             </tbody>
         </table>
+        {% endif %}
     </main>
 </body>
 </html>
